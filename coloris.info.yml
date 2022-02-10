@@ -1,0 +1,7 @@
+name: Coloris
+type: module
+description: 'Defines a coloris widget for "List (text)" fields.'
+package: Field types
+core_version_requirement: ^8.9 | ^9
+dependencies:
+  - drupal:options

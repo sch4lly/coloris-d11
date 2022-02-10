@@ -1,0 +1,7 @@
+element.coloris:
+  version: VERSION
+  css:
+    component:
+      css/coloris.css: {}
+  js:
+    js/coloris.js: {}
