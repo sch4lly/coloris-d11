@@ -3,7 +3,7 @@
 }
 
 
-.coloris-wrapper .circle .clr-field button {
+.coloris-wrapper .clr-field button {
   width: 22px;
   height: 22px;
   left: 5px;
@@ -11,10 +11,10 @@
   border-radius: 5px;
 }
 
-.coloris-wrapper .circle .clr-field input {
-  padding-left: 42px;
+.coloris-wrapper .clr-field input {
+  padding-left: 42px !important;
 }
 
-.coloris-wrapper .circle .clr-field button {
+.coloris-wrapper .clr-field button {
   border-radius: 50%;
 }
