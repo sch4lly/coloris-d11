@@ -41,7 +41,7 @@ class ColorisWidget extends FormElement {
    */
   public static function processFormElement(&$element, FormStateInterface $form_state, &$complete_form) {
 
-    $swatches = $element['swatches'] ?? [];
+    $swatches = $element['#swatches'] ?? [];
     $element['coloris'] = [
       '#prefix' => '<div class="coloris-wrapper">',
       '#suffix' => '</div>',
