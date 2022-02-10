@@ -3,7 +3,7 @@
  * JavaScript file for the coloris module.
  */
 
-(function ($, Drupal, drupalSettings, DrupalCoffee) {
+(function ($, Drupal, drupalSettings) {
 
   'use strict';
 
@@ -20,7 +20,22 @@
    */
   Drupal.behaviors.coloris = {
     attach: function () {
-      console.log('COLORIS');
+      window.setTimeout(function () {
+        document.querySelectorAll('.coloris').forEach(el => {
+          if (!el.classList.contains('coloris--processed')) {
+            var id = el.getAttribute('id');
+            var swatchesString = el.getAttribute("data-swatches");
+            var swatchesObject = JSON.parse(decodeURIComponent(swatchesString));
+
+            Coloris({
+              el: '#' + id,
+              swatches: swatchesObject
+            });
+
+          }
+        }
+        );
+      },2000);
     }
   };
 

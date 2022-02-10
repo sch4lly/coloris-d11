@@ -1,4 +1,4 @@
-name: Coloris
+name: Coloris Widget
 type: module
 description: 'Defines a coloris widget for "List (text)" fields.'
 package: Field types

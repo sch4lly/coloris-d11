@@ -2,6 +2,7 @@
 
 namespace Drupal\coloris\Element;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
 
@@ -20,12 +21,12 @@ class ColorisWidget extends FormElement {
     return [
       '#process' => [
         [$class, 'processFormElement'],
+        [$class, 'processGroup'],
       ],
       '#pre_render' => [
         [$class, 'preRenderGroup'],
       ],
       '#input' => TRUE,
-
     ];
   }
 
@@ -40,32 +41,22 @@ class ColorisWidget extends FormElement {
    */
   public static function processFormElement(&$element, FormStateInterface $form_state, &$complete_form) {
 
+    $swatches = $element['swatches'] ?? [];
     $element['coloris'] = [
-      '#prefix' => '<div class="coloris">',
+      '#prefix' => '<div class="coloris-wrapper">',
       '#suffix' => '</div>',
-      '#type' => 'radios',
+      '#type' => 'textfield',
+      '#attributes' => [
+        'class' => ['coloris'],
+        'id' => Html::getUniqueId('coloris'),
+        'data-swatches' => json_encode($swatches)
+      ],
       '#required' => $element['#required'],
       '#default_value' => $element['#default_value'],
       '#title' => $element['#title']
     ];
 
-    foreach ($element['#options'] as $key => $title) {
-      if (strpos($title, '/') !== FALSE) {
-        [$title, $color] = explode('/', $title);
-        $element['coloris']['#options'][$key] = $title;
-        $element['coloris'][$key]['#attributes']['class'][] = "color-name--{$key}";
-
-        if (substr($color, 1) != '#') {
-          $element['coloris'][$key]['#attributes']['class'][] = "color-css--{$color}";
-        }
-
-        if ($color != 'transparent') {
-          $element['coloris'][$key]['#attributes']['style'] = "background:{$color};";
-        }
-      }
-    }
-
-    $element['colorwidget']['#attached']['library'][] = 'coloris/element.coloris';
+    $element['coloris']['#attached']['library'][] = 'coloris/element.coloris';
     return $element;
   }
 

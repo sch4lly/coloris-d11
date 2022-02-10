@@ -1,7 +1,17 @@
 element.coloris:
   version: VERSION
   css:
-    component:
+    theme:
       css/coloris.css: {}
   js:
-    js/coloris.js: {}
+    js/coloris.js: { minified: true, preprocess: false }
+  dependencies:
+    - coloris/element.coloris.lib
+
+element.coloris.lib:
+  version: VERSION
+  css:
+    theme:
+      '//cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css': {type: external}
+  js:
+    '//cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js': {type: external}
