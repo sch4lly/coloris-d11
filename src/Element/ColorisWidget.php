@@ -16,7 +16,7 @@ class ColorisWidget extends FormElement {
   /**
    * {@inheritdoc}
    */
-  public function getInfo() {
+  public function getInfo() : array {
     $class = get_class($this);
     return [
       '#process' => [
@@ -35,11 +35,15 @@ class ColorisWidget extends FormElement {
    *
    * @param array $element
    *   Render array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state.
+   * @param bool $complete_form
+   *   Unused variable.
    *
    * @return array
    *   Render array.
    */
-  public static function processFormElement(&$element, FormStateInterface $form_state, &$complete_form) {
+  public static function processFormElement(array &$element, FormStateInterface $form_state, &$complete_form) : array {
 
     $swatches = $element['#swatches'] ?? [];
     $element['coloris'] = [
@@ -49,11 +53,12 @@ class ColorisWidget extends FormElement {
       '#attributes' => [
         'class' => ['coloris'],
         'id' => Html::getUniqueId('coloris'),
-        'data-swatches' => json_encode($swatches)
+        'data-swatches' => json_encode($swatches),
       ],
       '#required' => $element['#required'],
       '#default_value' => $element['#default_value'],
-      '#title' => $element['#title']
+      '#title' => $element['#title'],
+      '#description' => $element['#description'],
     ];
 
     $element['coloris']['#attached']['library'][] = 'coloris/element.coloris';
