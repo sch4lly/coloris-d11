@@ -3,7 +3,7 @@
  * JavaScript file for the coloris module.
  */
 
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal) {
 
   'use strict';
 
@@ -23,9 +23,9 @@
       window.setTimeout(function () {
         document.querySelectorAll('.coloris').forEach(el => {
           if (!el.classList.contains('coloris--processed')) {
-            var id = el.getAttribute('id');
-            var swatchesString = el.getAttribute("data-swatches");
-            var swatchesObject = JSON.parse(decodeURIComponent(swatchesString));
+            let id = el.getAttribute('id');
+            let swatchesString = el.getAttribute("data-swatches");
+            let swatchesObject = JSON.parse(decodeURIComponent(swatchesString));
 
             Coloris({
               el: '#' + id,
@@ -39,4 +39,4 @@
     }
   };
 
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal);
