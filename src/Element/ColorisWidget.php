@@ -5,29 +5,23 @@ namespace Drupal\coloris\Element;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
+use Drupal\Core\Render\Element\Textfield;
 
 /**
  * Renders coloris widget.
  *
  * @FormElement("coloriswidget")
  */
-class ColorisWidget extends FormElement {
+class ColorisWidget extends Textfield {
 
   /**
    * {@inheritdoc}
    */
   public function getInfo() : array {
-    $class = get_class($this);
-    return [
-      '#process' => [
-        [$class, 'processFormElement'],
-        [$class, 'processGroup'],
-      ],
-      '#pre_render' => [
-        [$class, 'preRenderGroup'],
-      ],
-      '#input' => TRUE,
-    ];
+    $info = parent::getInfo();
+    $class = static::class;
+    $info['#process'][] = [$class, 'processFormElement'];
+    return $info;
   }
 
   /**
@@ -59,7 +53,7 @@ class ColorisWidget extends FormElement {
     $clear_button_label = $element['#clear_button_label'] ?? t('Clear');
     $swatches = $element['#swatches'] ?? [];
     $inline = isset($element['#inline']) && $element['#inline'] === TRUE ? 'true' : 'false';
-    $element['coloris'] = [
+    $element = [
       '#prefix' => '<div class="coloris-wrapper">',
       '#suffix' => '</div>',
       '#type' => 'textfield',
@@ -84,17 +78,17 @@ class ColorisWidget extends FormElement {
       '#default_value' => $element['#default_value'],
       '#title' => $element['#title'],
       '#description' => $element['#description'],
-    ];
+    ] + $element;
 
     if ($parent !== FALSE) {
-      $element['coloris']['#attributes']['data-parent'] = $parent;
+      $element['#attributes']['data-parent'] = $parent;
     }
 
     if (isset($element['#default_color'])) {
-      $element['coloris']['#attributes']['data-default-color'] = $element['#default_color'];
+      $element['#attributes']['data-default-color'] = $element['#default_color'];
     }
 
-    $element['coloris']['#attached']['library'][] = 'coloris/element.coloris';
+    $element['#attached']['library'][] = 'coloris/element.coloris';
     return $element;
   }
 
