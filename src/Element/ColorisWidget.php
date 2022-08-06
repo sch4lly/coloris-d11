@@ -4,7 +4,6 @@ namespace Drupal\coloris\Element;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element\FormElement;
 use Drupal\Core\Render\Element\Textfield;
 
 /**
@@ -41,7 +40,7 @@ class ColorisWidget extends Textfield {
 
     $parent = $element['#parent'] ?? FALSE;
     $wrap = isset($element['#wrap']) && $element['#wrap'] === FALSE ? 'false' : 'true';
-    $theme = $element['#theme'] ?? 'default';
+    $theme = $element['#data_theme'] ?? 'default';
     $theme_mode = $element['#theme_mode'] ?? 'light';
     $margin = $element['#margin'] ?? 2;
     $format = $element['#format'] ?? 'hex';
