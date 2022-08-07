@@ -19,7 +19,10 @@
    *
    */
   Drupal.behaviors.coloris = {
-    attach: function () {
+    attach: function (context) {
+      if (context !== document) {
+        return;
+      }
       window.setTimeout(function () {
         document.querySelectorAll('.coloris').forEach(el => {
           if (!el.classList.contains('coloris--processed')) {

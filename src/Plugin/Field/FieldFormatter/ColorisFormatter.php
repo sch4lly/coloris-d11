@@ -5,15 +5,14 @@ namespace Drupal\coloris\Plugin\Field\FieldFormatter;
 use Drupal\Core\Field\FieldFilteredMarkup;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
-use Drupal\Core\Form\OptGroup;
 
 /**
- * VResult field formatter which returns the graphql query.
+ * Coloris field formatter which returns the color.
  *
  * @FieldFormatter(
- *   id = "coloris_title",
- *   label = @Translation("Coloris title"),
- *   field_types = { "list_string" }
+ *   id = "coloris_color",
+ *   label = @Translation("Coloris color"),
+ *   field_types = { "coloris_color" }
  * )
  */
 class ColorisFormatter extends FormatterBase {
@@ -26,11 +25,6 @@ class ColorisFormatter extends FormatterBase {
 
     // Only collect allowed options if there are actually items to display.
     if ($items->count()) {
-      $provider = $items->getFieldDefinition()
-        ->getFieldStorageDefinition()
-        ->getOptionsProvider('value', $items->getEntity());
-      // Flatten the possible options, to support opt groups.
-      $options = OptGroup::flattenOptions($provider->getPossibleOptions());
 
       foreach ($items as $delta => $item) {
         $value = $item->value;

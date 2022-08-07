@@ -1,0 +1,49 @@
+field.field_settings.coloris:
+  type: mapping
+  label: Coloris field settings
+  mapping:
+    wrap:
+      type: boolean
+      label: Wrap
+    data_theme:
+      type: string
+      label: Theme
+    theme_mode:
+      type: string
+      label: Theme mode
+    margin:
+      type: integer
+      label: Margin
+    format:
+      type: string
+      label: Format
+    format_toggle:
+      type: boolean
+      label: Format toggle
+    alpha:
+      type: boolean
+      label: Alpha
+    force_alpha:
+      type: boolean
+      label: Force alpha
+    swatches_only:
+      type: boolean
+      label: Swatches only
+    focus_input:
+      type: boolean
+      label: Focus Input
+    clear_button:
+      type: boolean
+      label: Clear button
+    clear_label:
+      type: string
+      label: Clear label
+    swatches:
+      type: string
+      label: Swatches
+    inline:
+      type: boolean
+      label: Inline
+    default_color:
+      type: string
+      label: Default color
