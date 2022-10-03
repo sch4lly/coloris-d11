@@ -23,7 +23,7 @@
       window.setTimeout(function () {
         document.querySelectorAll('.coloris').forEach(el => {
           if (!el.getAttribute('data-coloris-once')) {
-            document.body.setAttribute('data-coloris-once', 'true');
+            el.setAttribute('data-coloris-once', 'true');
           } else {
             return;
           }
