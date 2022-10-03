@@ -20,11 +20,13 @@
    */
   Drupal.behaviors.coloris = {
     attach: function (context) {
-      if (context !== document) {
-        return;
-      }
       window.setTimeout(function () {
         document.querySelectorAll('.coloris').forEach(el => {
+          if (!el.getAttribute('data-coloris-once')) {
+            document.body.setAttribute('data-coloris-once', 'true');
+          } else {
+            return;
+          }
           if (!el.classList.contains('coloris--processed')) {
             let id = el.getAttribute('id');
             let parentString = el.getAttribute("data-parent");
