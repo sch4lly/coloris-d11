@@ -65,6 +65,7 @@ class ColorisItem extends FieldItemBase {
         'default' => $this->t('Default'),
         'large' => $this->t('Large'),
         'polaroid' => $this->t('Polaroid'),
+        'pill' => $this->t('Pill'),
       ],
       '#required' => TRUE,
     ];
