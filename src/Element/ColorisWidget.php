@@ -45,7 +45,7 @@ class ColorisWidget extends Textfield {
     $margin = $element['#margin'] ?? 2;
     $format = $element['#format'] ?? 'hex';
     $format_toggle = isset($element['#format_toggle']) && $element['#format_toggle'] == TRUE ? 'true' : 'false';
-    $alpha = isset($element['#alpha']) && $element['#alpha'] === FALSE ? 'false' : 'true';
+    $alpha = isset($element['#alpha']) && $element['#alpha'] == FALSE ? 'false' : 'true';
     $swatches_only = isset($element['#swatches_only']) && $element['#swatches_only'] == TRUE ? 'true' : 'false';
     $focus_input = isset($element['#focus_input']) && $element['#focus_input'] == FALSE ? 'false' : 'true';
     $clear_button_show = isset($element['#clear_button_show']) && $element['#clear_button_show'] == TRUE ? 'true' : 'false';
