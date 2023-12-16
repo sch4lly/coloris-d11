@@ -50,7 +50,7 @@ class ColorisWidget extends Textfield {
     $focus_input = isset($element['#focus_input']) && $element['#focus_input'] == FALSE ? 'false' : 'true';
     $clear_button_show = isset($element['#clear_button_show']) && $element['#clear_button_show'] == TRUE ? 'true' : 'false';
     $clear_button_label = $element['#clear_button_label'] ?? t('Clear');
-    $swatches = $element['#swatches'] ?? [];
+    $swatches = array_filter($element['#swatches'] ?? []);
     $inline = isset($element['#inline']) && $element['#inline'] == TRUE ? 'true' : 'false';
     $element = [
       '#prefix' => '<div class="coloris-wrapper">',
