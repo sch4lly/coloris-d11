@@ -48,8 +48,8 @@ class ColorisWidget extends Textfield {
     $alpha = isset($element['#alpha']) && $element['#alpha'] === FALSE ? 'false' : 'true';
     $swatches_only = isset($element['#swatches_only']) && $element['#swatches_only'] == TRUE ? 'true' : 'false';
     $focus_input = isset($element['#focus_input']) && $element['#focus_input'] == FALSE ? 'false' : 'true';
-    $clear_button_show = isset($element['#clear_button_show']) && $element['#clear_button_show'] == TRUE ? 'true' : 'false';
-    $clear_button_label = $element['#clear_button_label'] ?? t('Clear');
+    $clear_button_show = isset($element['#clear_button']) && $element['#clear_button'] == TRUE ? 'true' : 'false';
+    $clear_button_label = $element['#clear_label'] ?? t('Clear');
     $swatches = $element['#swatches'] ?? [];
     $inline = isset($element['#inline']) && $element['#inline'] == TRUE ? 'true' : 'false';
     $element = [
