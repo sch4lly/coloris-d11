@@ -14,6 +14,7 @@ use Drupal\Core\TypedData\DataDefinition;
  * @FieldType(
  *   id = "coloris_color",
  *   label = @Translation("Coloris Color"),
+ *   description = @Translation("Coloris Color Picker"),
  *   category = @Translation("Text"),
  *   default_widget = "text_coloris",
  *   default_formatter = "coloris_color"

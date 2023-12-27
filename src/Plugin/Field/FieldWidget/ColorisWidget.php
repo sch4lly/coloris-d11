@@ -12,6 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
  * @FieldWidget(
  *   id = "text_coloris",
  *   label = @Translation("Color selection"),
+ *   description = @Translation("Color selection widget"),
  *   field_types = {
  *     "coloris_color",
  *   }

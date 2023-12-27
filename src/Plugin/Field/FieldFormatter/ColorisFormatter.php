@@ -12,6 +12,7 @@ use Drupal\Core\Field\FormatterBase;
  * @FieldFormatter(
  *   id = "coloris_color",
  *   label = @Translation("Coloris color"),
+ *   description = @Translation("Coloris color formatter"),
  *   field_types = { "coloris_color" }
  * )
  */
