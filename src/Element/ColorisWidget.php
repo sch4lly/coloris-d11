@@ -104,7 +104,7 @@ class ColorisWidget extends Textfield {
   public static function validateFormElement(array &$element, FormStateInterface $form_state, array &$complete_form) {
     $value = trim($element['#value']);
     if ($value !== '') {
-      preg_match('/^(\#[\da-f]{3}|\#[\da-f]{6}|\#[\da-f]{8}|rgba\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)(,\s*(0\.\d+|1))\)|hsla\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)(,\s*(0\.\d+|1))\)|rgb\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)|hsl\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)\))$/', $value, $matches);
+      preg_match('/(?(DEFINE)(?<rgb>[0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5]))(?(DEFINE)(?<del>\,{1}\s?))(?(DEFINE)(?<hue>[0-9]|[1-9][0-9]|[1-2][0-9][0-9]|[3][0-5][0-9]|[3][6][0]))(?(DEFINE)(?<percent>[0-9]|[1-9][0-9]|[1][0][0]))(?(DEFINE)(?<alpha>0?\.[0-9]))^\#((((\d|[a-f]){3}){1,2})|((\d|[a-f]){8}))$|^rgba\(\g'rgb'\g'del'\g'rgb'\g'del'\g'rgb'\g'del'\g'alpha'\)$|^rgb\(\g'rgb'\g'del'\g'rgb'\g'del'\g'rgb'\)$|^hsl\(\g'hue'\g'del'\g'percent'\%\g'del'\g'percent'\%\)$|^hsla\(\g'hue'\g'del'\g'percent'\%\g'del'\g'percent'\%\g'del'\g'alpha'\)$/', $value, $matches);
       if (count($matches) === 0) {
         $form_state->setError($element, t('The color code %color is not valid.', ['%color' => $value]));
       }
