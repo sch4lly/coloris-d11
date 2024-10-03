@@ -70,6 +70,10 @@
               settings.parent = parentString;
             }
 
+            el.addEventListener('click', e => {
+              Coloris(settings);
+            });
+
             Coloris(settings);
 
           }
