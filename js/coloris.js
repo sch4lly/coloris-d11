@@ -41,6 +41,8 @@
             let focusInputString = el.getAttribute("data-focus-input");
             let clearButtonShowString = el.getAttribute("data-clear-button-show");
             let clearButtonLabelString = el.getAttribute("data-clear-button-label");
+            let closeButtonShowString = el.getAttribute("data-close-button-show");
+            let closeButtonLabelString = el.getAttribute("data-close-button-label");
             let inlineString = el.getAttribute("data-inline");
             let defaultColorString = el.getAttribute("data-default-color");
             let swatchesString = el.getAttribute("data-swatches");
@@ -57,21 +59,25 @@
               alpha: alphaString === 'true',
               swatchesOnly: swatchesOnlyString === 'true',
               focusInput: focusInputString === 'true',
-              clearButton: {
-                show: clearButtonShowString === 'true',
-                label: clearButtonLabelString
-              },
+              clearButton: clearButtonShowString === 'true',
+              clearLabel: clearButtonLabelString,
+              closeButton: closeButtonShowString === 'true',
+              closeLabel: closeButtonLabelString,
               swatches: swatchesObject,
               inline: inlineString === 'true',
               defaultColor: defaultColorString
             }
 
+
             if (parentString !== null) {
               settings.parent = parentString;
             }
 
-            Coloris(settings);
+            el.addEventListener('click', e => {
+              Coloris(settings);
+            });
 
+            Coloris(settings);
           }
         }
         );
