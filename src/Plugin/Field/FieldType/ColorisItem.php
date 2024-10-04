@@ -39,6 +39,8 @@ class ColorisItem extends FieldItemBase {
       'select_input' => FALSE,
       'clear_button' => TRUE,
       'clear_label' => t('Clear'),
+      'close_button' => TRUE,
+      'close_label' => t('Close'),
       'swatches' => [],
       'inline' => FALSE,
       'default_color' => '',
@@ -65,6 +67,7 @@ class ColorisItem extends FieldItemBase {
         'default' => $this->t('Default'),
         'large' => $this->t('Large'),
         'polaroid' => $this->t('Polaroid'),
+        'pill' => $this->t('Pill'),
       ],
       '#required' => TRUE,
     ];

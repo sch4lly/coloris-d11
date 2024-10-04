@@ -38,6 +38,7 @@ class ColorisWidget extends Textfield {
    *   Render array.
    */
   public static function processFormElement(array &$element, FormStateInterface $form_state, array &$complete_form): array {
+
     $parent = $element['#parent'] ?? FALSE;
     $wrap = isset($element['#wrap']) && $element['#wrap'] == FALSE ? 'false' : 'true';
     $theme = $element['#data_theme'] ?? 'default';
@@ -45,11 +46,13 @@ class ColorisWidget extends Textfield {
     $margin = $element['#margin'] ?? 2;
     $format = $element['#format'] ?? 'hex';
     $format_toggle = isset($element['#format_toggle']) && $element['#format_toggle'] == TRUE ? 'true' : 'false';
-    $alpha = isset($element['#alpha']) && $element['#alpha'] === FALSE ? 'false' : 'true';
+    $alpha = isset($element['#alpha']) && $element['#alpha'] == FALSE ? 'false' : 'true';
     $swatches_only = isset($element['#swatches_only']) && $element['#swatches_only'] == TRUE ? 'true' : 'false';
     $focus_input = isset($element['#focus_input']) && $element['#focus_input'] == FALSE ? 'false' : 'true';
-    $clear_button_show = isset($element['#clear_button_show']) && $element['#clear_button_show'] == TRUE ? 'true' : 'false';
-    $clear_button_label = $element['#clear_button_label'] ?? t('Clear');
+    $clear_button_show = isset($element['#clear_button']) && $element['#clear_button'] == TRUE ? 'true' : 'false';
+    $clear_button_label = $element['#clear_label'] ?? t('Clear');
+    $close_button_show = isset($element['#close_button']) && $element['#close_button'] == TRUE ? 'true' : 'false';
+    $close_button_label = $element['#close_label'] ?? t('Clear');
     $swatches = $element['#swatches'] ?? [];
     $inline = isset($element['#inline']) && $element['#inline'] == TRUE ? 'true' : 'false';
     $element = [
@@ -69,6 +72,8 @@ class ColorisWidget extends Textfield {
         'data-focus-input' => $focus_input,
         'data-clear-button-show' => $clear_button_show,
         'data-clear-button-label' => $clear_button_label,
+        'data-close-button-show' => $close_button_show,
+        'data-close-button-label' => $close_button_label,
         'data-swatches' => json_encode($swatches),
         'data-inline' => $inline,
       ] + $element['#attributes'],
@@ -104,7 +109,7 @@ class ColorisWidget extends Textfield {
   public static function validateFormElement(array &$element, FormStateInterface $form_state, array &$complete_form) {
     $value = trim($element['#value']);
     if ($value !== '') {
-      preg_match('/^(\#[\da-f]{3}|\#[\da-f]{6}|\#[\da-f]{8}|rgba\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)(,\s*(0\.\d+|1))\)|hsla\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)(,\s*(0\.\d+|1))\)|rgb\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)|hsl\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)\))$/', $value, $matches);
+      preg_match("/(?(DEFINE)(?<rgb>[0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5]))(?(DEFINE)(?<del>\,{1}\s?))(?(DEFINE)(?<hue>[0-9]|[1-9][0-9]|[1-2][0-9][0-9]|[3][0-5][0-9]|[3][6][0]))(?(DEFINE)(?<percent>[0-9]|[1-9][0-9]|[1][0][0]))(?(DEFINE)(?<alpha>0?\.[0-9]{1,2}))^\#((((\d|[a-f]){3}){1,2})|((\d|[a-f]){8}))$|^rgba\(\g'rgb'\g'del'\g'rgb'\g'del'\g'rgb'\g'del'\g'alpha'\)$|^rgb\(\g'rgb'\g'del'\g'rgb'\g'del'\g'rgb'\)$|^hsl\(\g'hue'\g'del'\g'percent'\%\g'del'\g'percent'\%\)$|^hsla\(\g'hue'\g'del'\g'percent'\%\g'del'\g'percent'\%\g'del'\g'alpha'\)$/", $value, $matches);
       if (count($matches) === 0) {
         $form_state->setError($element, t('The color code %color is not valid.', ['%color' => $value]));
       }

@@ -34,6 +34,8 @@ class ColorisWidget extends StringTextfieldWidget {
       '#alpha' => $this->getFieldSetting('alpha'),
       '#clear_button' => $this->getFieldSetting('clear_button'),
       '#clear_label' => $this->getFieldSetting('clear_label'),
+      '#close_button' => $this->getFieldSetting('close_button'),
+      '#close_label' => $this->getFieldSetting('close_label'),
       '#data_theme' => $this->getFieldSetting('data_theme'),
       '#default_color' => $this->getFieldSetting('default_color'),
       '#focus_input' => $this->getFieldSetting('focus_input'),
