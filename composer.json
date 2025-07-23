@@ -1,6 +1,6 @@
 {
     "name": "drupal/coloris",
-    "description": "Defines a coloris widget for "List (text)" fields.",
+    "description": "Defines a coloris widget for List (text) fields.",
     "type": "drupal-module",
     "homepage": "https://drupal.org/project/components",
     "license": "GPL-2.0-or-later",
